@@ -14,6 +14,8 @@ namespace ITU
 		[field: Space, SerializeField] public Player Player { get; private set; }
 		[field: SerializeField] public BattleUI UI { get; private set; }
 
+		public IReadOnlyList<Enemy> Enemies => enemies;
+
 		public void Prepare()
 		{
 			Player.Prepare(this);
@@ -22,7 +24,6 @@ namespace ITU
 				Destroy(enemies[0].gameObject);
 				enemies.RemoveAt(0);
 			}
-
 			UI.Prepare(this);
 		}
 
@@ -31,33 +32,9 @@ namespace ITU
 			StartCoroutine(SpawnEnemy());
 		}
 
-		public void End()
+		private IEnumerator SpawnEnemy(float delay = 0.5f)
 		{
-		}
-
-		public bool TryGetClosestEnemy(Player player, out Enemy enemy)
-		{
-			enemy = null;
-			if (enemies.Count == 0) return false;
-
-			float min = float.MaxValue;
-			enemy = enemies[0];
-			for (int i = 0; i < enemies.Count; i ++)
-			{
-				float distance = Vector3.Distance(player.transform.position, enemies[i].transform.position);
-				if (distance < min)
-				{
-					enemy = enemies[i];
-					min = distance;
-				}
-			}
-
-			return min <= player.Stats.Reach;
-		}
-
-		private IEnumerator SpawnEnemy()
-		{
-			yield return new WaitForSeconds(0.5f);
+			yield return new WaitForSeconds(delay);
 			Enemy enemy = Instantiate(enemyPrefab, enemyContainer);
 
 			// TODO: review this later.
@@ -76,6 +53,13 @@ namespace ITU
 			};
 
 			enemies.Add(enemy);
+
+			// TODO: better enemy spawning.
+			bool addAnother = Random.Range(0, 2) == 0;
+			if (addAnother)
+			{
+				StartCoroutine(SpawnEnemy(2.0f));
+			}
 		}
 
 		private void KillEnemy(Enemy enemy)

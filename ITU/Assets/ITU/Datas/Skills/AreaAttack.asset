@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9138069265b51a24fad0135c2e178daa, type: 3}
-  m_Name: AutoAttack
-  m_EditorClassIdentifier: Assembly-CSharp::ITU.AutoAttack
+  m_Script: {fileID: 11500000, guid: d4f982a0ebe19824eb4d00d3fb747a93, type: 3}
+  m_Name: AreaAttack
+  m_EditorClassIdentifier: Assembly-CSharp::ITU.AreaAttack
   <Icon>k__BackingField: {fileID: 0}
-  <Cooldown>k__BackingField: 5
+  <Cooldown>k__BackingField:
+    <Time>k__BackingField: 2

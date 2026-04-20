@@ -1,10 +1,11 @@
-using Unity.VisualScripting;
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ITU
 {
-	[CreateAssetMenu(fileName = nameof(Attack), menuName = "ITU/Skills/Create " + nameof(Attack))]
-	public class Attack : Skill, ITickable, IHasCooldown
+	[CreateAssetMenu(fileName = nameof(AreaAttack), menuName = "ITU/Skills/Create " + nameof(AreaAttack))]
+	public class AreaAttack : Skill, ITickable, IHasCooldown
 	{
 		[field: SerializeField] public CooldownHandler Cooldown { get; private set; } = new CooldownHandler();
 
@@ -30,12 +31,11 @@ namespace ITU
 
 		protected override void OnExecute()
 		{
-			if (Battle.TryGetClosestEnemy(Owner, out Enemy target))
+			Enemy[] enemies = Battle.GetClosestEnemies(Owner, 2);
+			foreach (var enemy in enemies)
 			{
-				float value = Owner.Stats.Attack;
-				target.Hit(value);
+				enemy.Hit(Owner.Stats.Attack);
 			}
-
 			Cooldown.Trigger();
 		}
 	}

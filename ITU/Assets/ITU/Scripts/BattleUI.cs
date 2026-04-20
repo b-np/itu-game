@@ -21,10 +21,13 @@ namespace ITU
 				if (index < battle.Player.Skills.Length)
 				{
 					Skill skill = battle.Player.Skills[index];
-					skill.Refreshed += () =>
+					if (skill is IHasCooldown cooldown)
 					{
-						skillButton.interactable = true;
-					};
+						cooldown.Cooldown.OnRefreshed += () =>
+						{
+							skillButton.interactable = true;
+						};
+					}
 
 					skillButton.onClick.AddListener(() =>
 					{

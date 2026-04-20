@@ -12,12 +12,13 @@ namespace ITU
 		public Battle Battle { get; private set; }
 		public Player Owner { get; private set; }
 
-		public event Action Refreshed;
+		public event Action OnRefreshed;
 
 		public void Initialize(Battle battle, Player owner)
 		{
 			Battle = battle;
 			Owner = owner;
+			OnInitialize();
 			isInitialized = true;
 		}
 
@@ -32,14 +33,15 @@ namespace ITU
 		public void Refresh()
 		{
 			OnRefresh();
-			Refreshed?.Invoke();
+			OnRefreshed?.Invoke();
 		}
 
 		public virtual void Cleanup()
 		{
-			Refreshed = null;
+			OnRefreshed = null;
 		}
 
+		protected virtual void OnInitialize() { }
 		protected virtual bool CanExecute() => true;
 		protected virtual void OnRefresh() { }
 

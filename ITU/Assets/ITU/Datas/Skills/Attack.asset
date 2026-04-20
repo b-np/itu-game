@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ca3181fd7c1d34f8d2b600caac788a, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: Assembly-CSharp::ITU.BasicAttack
-  <Cooldown>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 0}
+  <Cooldown>k__BackingField:
+    <Time>k__BackingField: 0.5
