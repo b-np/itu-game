@@ -9,7 +9,7 @@ namespace ITU
 		public Battle Battle { get; private set; }
 
 		[SerializeField] private TMP_Text scoreText;
-		[SerializeField] private Button[] skillButtons;
+		[SerializeField] private SkillButton[] skillButtons;
 
 		public void Prepare(Battle battle)
 		{
@@ -18,9 +18,9 @@ namespace ITU
 			for (int i = 0; i < skillButtons.Length; i++)
 			{
 				int index = i;
-				Button skillButton = skillButtons[i];
+				SkillButton skillButton = skillButtons[i];
 
-				skillButton.onClick.RemoveAllListeners();
+				skillButton.Button.onClick.RemoveAllListeners();
 				if (index < Battle.Player.Skills.Length)
 				{
 					Skill skill = Battle.Player.Skills[index];
@@ -28,23 +28,23 @@ namespace ITU
 					{
 						cooldown.Cooldown.OnRefreshed += () =>
 						{
-							skillButton.interactable = true;
+							skillButton.Button.interactable = true;
 						};
 					}
 
-					skillButton.onClick.AddListener(() =>
+					skillButton.Button.onClick.AddListener(() =>
 					{
 						skill.Execute();
-						skillButton.interactable = false;
+						skillButton.Button.interactable = false;
 					});
-					skillButton.image.sprite = skill.Icon;
+					skillButton.Icon.sprite = skill.Icon;
 
-					skillButton.interactable = true;
+					skillButton.Button.interactable = true;
 					skillButton.gameObject.SetActive(true);
 				}
 				else
 				{
-					skillButton.interactable = false;
+					skillButton.Button.interactable = false;
 					skillButton.gameObject.SetActive(false);
 				}
 			}

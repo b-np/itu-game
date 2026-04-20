@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762d8c2558df91c4cbc884130d6b4379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITU.Enemy
-  speed: 1.5
 --- !u!58 &1117014433435298376
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -192,7 +191,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -8622931333009076412, guid: c824d9de01ee30344bc2bc439381e0fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
