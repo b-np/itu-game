@@ -5,7 +5,8 @@ namespace ITU
 {
 	public class Enemy : MonoBehaviour, IHittable
 	{
-		[SerializeField] private float speed = 1.0f;
+		public EnemyStats Stats { get; private set; } = new EnemyStats();
+		public Health Health { get; private set; } 
 
 		public event Action OnHit;
 		public event Action OnKilled;
@@ -20,9 +21,21 @@ namespace ITU
 			OnHit = null;
 		}
 
+		public void Initialize(EnemyStats stats)
+		{
+			Stats = stats;
+			Health = new Health(Stats.Health);
+		}
+
 		public void Hit(float value)
 		{
+			Health.Decrease(value);
+			Debug.Log($"{Health.Current}/{Health.Max} -- {Health.IsAlive}");
 			OnHit?.Invoke();
+			if (!Health.IsAlive)
+			{
+				Kill();
+			}
 		}
 
 		public void Kill()
@@ -32,7 +45,9 @@ namespace ITU
 
 		private void UpdateMovement()
 		{
-			float value = Time.deltaTime * speed;
+			if (!Health.IsAlive) return;
+
+			float value = Time.deltaTime * Stats.MovementSpeed;
 			transform.position += -1 * value * transform.right; // -1 because we're moving left.
 		}
 	}

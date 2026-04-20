@@ -26,12 +26,14 @@ namespace ITU
 			return min <= player.Stats.Reach;
 		}
 
-		public static Enemy[] GetClosestEnemies(this Battle battle, Player player, int count)
+		public static Enemy[] GetClosestEnemies(this Battle battle, Player player, int count, float maxReach = 0.0f)
 		{
 			var list = new List<(float distance, Enemy enemy)>();
 			for (int i = 0; i < battle.Enemies.Count; i++)
 			{
 				float distance = Vector3.Distance(player.transform.position, battle.Enemies[i].transform.position);
+				if (maxReach > 0.0f && distance > maxReach) continue;
+
 				list.Add(new (distance, battle.Enemies[i]));
 			}
 			list.Sort((l, r) =>
@@ -40,7 +42,9 @@ namespace ITU
 				if (l.distance > r.distance) return 1;
 				return 0;
 			});
-			return list.Take(count).Select(i => i.enemy).ToArray();
+			return list.Take(count)
+				.Select(i => i.enemy)
+				.ToArray();
 		}
 	}
 }

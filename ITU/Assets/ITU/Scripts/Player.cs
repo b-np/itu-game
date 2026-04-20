@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ITU
@@ -5,8 +6,9 @@ namespace ITU
 	public class Player : MonoBehaviour
 	{
 		[field: SerializeField] public PlayerStats Stats { get; private set; } = new PlayerStats();
-
 		[field: SerializeField] public Skill[] Skills { get; private set; }
+
+		public event Action OnHit;
 
 		private void Update()
 		{
@@ -28,6 +30,11 @@ namespace ITU
 				skill.Cleanup();
 				skill.Refresh();
 			}
+		}
+
+		public void Hit()
+		{
+			OnHit?.Invoke();
 		}
 	}
 }

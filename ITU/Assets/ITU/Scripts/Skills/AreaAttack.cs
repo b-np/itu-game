@@ -31,7 +31,7 @@ namespace ITU
 
 		protected override void OnExecute()
 		{
-			Enemy[] enemies = Battle.GetClosestEnemies(Owner, 2);
+			Enemy[] enemies = Battle.GetClosestEnemies(Owner, 2, Owner.Stats.Reach * 2.0f);
 			foreach (var enemy in enemies)
 			{
 				enemy.Hit(Owner.Stats.Attack);

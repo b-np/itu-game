@@ -6,6 +6,8 @@ namespace ITU
 	[Serializable]
 	public class PlayerStats
 	{
+		[field: SerializeField] public float Health { get; private set; } = 1.0f;
+
 		[field: SerializeField] public float Attack { get; private set; } = 1.0f;
 		[field: SerializeField] public float Defense { get; private set; } = 1.0f;
 
