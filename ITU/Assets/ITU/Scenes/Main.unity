@@ -1038,8 +1038,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645601665}
+  - component: {fileID: 645601666}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: EnemyManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,6 +1063,23 @@ Transform:
   - {fileID: 433496802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645601666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645601664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1841dcd614283f346bd6128622db2feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ITU.EnemyManager
+  enemyPrefab: {fileID: 5510502397551280415, guid: 5de3e67765e13df4c9f7d21bd912d6a7, type: 3}
+  enemySpawnPoint: {fileID: 706627840}
+  enemyContainer: {fileID: 645601665}
+  enemySpawnIntervalMin: 0.8
+  enemySpawnIntervalMax: 1.5
 --- !u!1 &706627839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,10 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad75595fed3cd504b8c02934ad030dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ITU.Battle
-  enemyPrefab: {fileID: 5510502397551280415, guid: 5de3e67765e13df4c9f7d21bd912d6a7, type: 3}
-  enemyContainer: {fileID: 706627840}
-  enemySpawnIntervalMin: 0.8
-  enemySpawnIntervalMax: 1.5
+  <EnemyManager>k__BackingField: {fileID: 645601666}
   <Player>k__BackingField: {fileID: 2124260974}
   <UI>k__BackingField: {fileID: 361111056}
 --- !u!1 &816944274
