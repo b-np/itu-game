@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace ITU
 {
-	[CreateAssetMenu(fileName = "Hit", menuName = "ITU/Skills/Create Hit")]
-	public class Hit : Skill, ITickable, IHasCooldown
+	[CreateAssetMenu(fileName = nameof(Attack), menuName = "ITU/Skills/Create " + nameof(Attack))]
+	public class Attack : Skill, ITickable, IHasCooldown
 	{
 		private bool canExecute = true;
 		private bool cooldown = false;
@@ -35,10 +35,9 @@ namespace ITU
 
 		protected override void OnExecute()
 		{
-			Battle battle = Game.Instance.Battle;
-			if (battle.TryGetClosestEnemy(out Enemy target))
+			if (Battle.TryGetClosestEnemy(Owner, out Enemy target))
 			{
-				float value = battle.Player.Stats.Attack;
+				float value = Owner.Stats.Attack;
 				if (target is IHittable hittable)
 				{
 					hittable.Hit(value);

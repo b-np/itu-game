@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58eebf50e6573ac43ba6de1a6fca429b, type: 3}
-  m_Name: AutoHit
-  m_EditorClassIdentifier: Assembly-CSharp::ITU.AutoHit
-  <Icon>k__BackingField: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f8ca3181fd7c1d34f8d2b600caac788a, type: 3}
+  m_Name: Attack
+  m_EditorClassIdentifier: Assembly-CSharp::ITU.BasicAttack
   <Cooldown>k__BackingField: 1
